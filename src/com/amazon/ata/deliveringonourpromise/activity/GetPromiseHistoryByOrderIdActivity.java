@@ -40,7 +40,7 @@ public class GetPromiseHistoryByOrderIdActivity {
         }
 
         Order order = orderDao.get(orderId);
-
+        //FIXME something wrong here.
         List<OrderItem> customerOrderItems = order.getCustomerOrderItemList();
         OrderItem customerOrderItem = null;
         if (customerOrderItems != null && !customerOrderItems.isEmpty()) {
