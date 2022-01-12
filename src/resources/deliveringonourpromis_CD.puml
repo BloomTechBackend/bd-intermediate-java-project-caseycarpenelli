@@ -1,0 +1,572 @@
+@startuml
+
+digraph g {
+    rankdir="TB"
+    splines=polyline
+
+
+'nodes
+subgraph cluster_1414265340 {
+   	label=amazon
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+
+   subgraph cluster_110086052 {
+   	label=ata
+	labeljust=l
+	fillcolor="#d8d8d8"
+	style=filled
+
+   DeliveringOnOurPromiseIntegrationTests1393771752[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)DeliveringOnOurPromiseIntegrationTests</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   input: ATAUserHandler [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   shell: Shell [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >- fixtureFields(): Iterator&lt;Object[]&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >- regexForRowOfFields(fields: List&lt;String&gt;): String</TD></TR>
+<TR><TD ALIGN="LEFT" >- rowInTable(regex: String, result: String): boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >+ testFixturePromises(orderId: String, promiseFields: List&lt;String&gt;)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ testOrderHeaderColumns()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ testPromiseHeaderColumns()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+DeliveryPromiseService1504931410[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)DeliveryPromiseService</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   orderDatastore: OrderDatastore [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ getDeliveryPromise(customerOrderItemId: String): DeliveryPromise</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+DeliveryPromiseServiceClient79820300[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)DeliveryPromiseServiceClient</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   dpService: DeliveryPromiseService [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ getDeliveryPromiseByOrderItemId(customerOrderItemId: String): Promise</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+
+
+GetPromiseHistoryByOrderIdActivity1736465067[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)GetPromiseHistoryByOrderIdActivity</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   orderDao: ReadOnlyDao&lt;String, Order&gt; [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   promiseDao: ReadOnlyDao&lt;String, List&lt;Promise&gt;&gt; [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ getPromiseHistoryByOrderId(orderId: String): PromiseHistory</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+MasteryTaskFourTests1416164072[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)MasteryTaskFourTests</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   client: PromiseHistoryClient [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ masteryTaskFour_masteryTaskFourFile_existsAndItIsNotEmpty()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ masteryTaskFour_ofsClientClass_existsAndHasASingleMethod()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ masteryTaskFour_orderFulfillmentServiceClient_getsPromise()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ masteryTaskFour_promiseClients_arePolymorphicallyInterchangeable()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ masteryTaskFour_promiseDao_supportsMultiplePromiseClients()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+MasteryTaskOneTests1416164069[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)MasteryTaskOneTests</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   client: PromiseHistoryClient [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ masteryTaskOne_missedPromiseCli_resolvesCSIssue()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Order430949389[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Order</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+   condition: OrderCondition [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   customerId: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   customerOrderItemList: List&lt;OrderItem&gt; [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   marketplaceId: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   orderDate: ZonedDateTime [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   orderId: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   shipOption: String [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ builder(): Builder</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+OrderDao1554840972[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)OrderDao</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   omaClient: OrderManipulationAuthorityClient [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >- convertToOrderItem(orderResultItem: OrderResultItem): OrderItem</TD></TR>
+<TR><TD ALIGN="LEFT" >+ get(orderId: String): Order</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+OrderData955430128[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)OrderData</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   condition: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   customerId: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   customerOrderItemList: List&lt;OrderItemData&gt; [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   customerShipments: List&lt;OrderShipmentData&gt; [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   marketplaceId: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   orderDate: ZonedDateTime [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   orderId: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   shipOption: String [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ builder(): Builder</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+OrderDataGenerator955430128[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)OrderDataGenerator</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   currentCustomerId: long [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   currentOrderDate: ZonedDateTime [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   orderItemDataGenerator: OrderItemDataGenerator [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   orderShipmentDataGenerator: OrderShipmentDataGenerator [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" ># buildOrderData(numOrderItems: int): Builder</TD></TR>
+<TR><TD ALIGN="LEFT" >- createOrderCondition(): int</TD></TR>
+<TR><TD ALIGN="LEFT" >- createOrderCustomerId(): String</TD></TR>
+<TR><TD ALIGN="LEFT" >- createOrderDate(): ZonedDateTime</TD></TR>
+<TR><TD ALIGN="LEFT" >- createOrderMarketplaceId(): String</TD></TR>
+<TR><TD ALIGN="LEFT" >- createOrderShipOption(): String</TD></TR>
+<TR><TD ALIGN="LEFT" >- incrementOrderDataDate(time: ZonedDateTime): ZonedDateTime</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+OrderDatastore955430128[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)OrderDatastore</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   isDataPopulated: boolean [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   orderDataGenerator: OrderDataGenerator [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   orderDatasLookup: List&lt;OrderData&gt; [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   orderFixtureGenerator: OrderFixtureGenerator [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   orderFixtureItemData: Map&lt;String, OrderItemData&gt; [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   orderFixtures: Map&lt;String, OrderFixture&gt; [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   orderItemDataGenerator: OrderItemDataGenerator [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   orderItemDatasByOrderItemId: Map&lt;String, OrderItemData&gt; [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   orderShipmentDataGenerator: OrderShipmentDataGenerator [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >- confidenceStatusForItem(orderItem: OrderItemData): ConfidenceStatus</TD></TR>
+<TR><TD ALIGN="LEFT" >- ensureDataPopulated()</TD></TR>
+<TR><TD ALIGN="LEFT" >- formatTableNumberEntry(entry: int): String</TD></TR>
+<TR><TD ALIGN="LEFT" >- getNumDeliveredShipmentsForOrder(orderData: OrderData): int</TD></TR>
+<TR><TD ALIGN="LEFT" >- getNumItemsForOrder(orderData: OrderData): int</TD></TR>
+<TR><TD ALIGN="LEFT" >- getNumShipmentsForOrder(orderData: OrderData): int</TD></TR>
+<TR><TD ALIGN="LEFT" >- getNumShippedShipmentsForOrder(orderData: OrderData): int</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getOrderData(orderId: String): OrderData</TD></TR>
+<TR><TD ALIGN="LEFT" >- getOrderIdSuffixInt(orderId: String): int</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getOrderItemData(customerOrderItemId: String): OrderItemData</TD></TR>
+<TR><TD ALIGN="LEFT" >- orderIdToIndex(orderId: String): int</TD></TR>
+<TR><TD ALIGN="LEFT" >- renderPromiseAgreementEntryForOrder(orderData: OrderData): String</TD></TR>
+<TR><TD ALIGN="LEFT" >- renderPromiseConfidenceEntryForOrder(orderData: OrderData): String</TD></TR>
+<TR><TD ALIGN="LEFT" >- shipmentPromisesAgree(shipment: OrderShipmentData): boolean</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+OrderFixture955430128[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)OrderFixture</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   dataDescription: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   orderData: OrderData [0..1]</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+OrderFixtureGenerator955430128[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)OrderFixtureGenerator</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   orderDataGenerator: OrderDataGenerator [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   orderItemDataGenerator: OrderItemDataGenerator [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   orderShipmentDataGenerator: OrderShipmentDataGenerator [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ generateOrderFixtures(): Map&lt;String, OrderFixture&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >- singleItemNotShipped(orderId: String): Builder</TD></TR>
+<TR><TD ALIGN="LEFT" >- singleItemShippedAndDelivered(orderId: String): Builder</TD></TR>
+<TR><TD ALIGN="LEFT" >- singleItemShippedNotDelivered(orderId: String): Builder</TD></TR>
+<TR><TD ALIGN="LEFT" >- threeItemsThreeShipmentsTwoNotShippedOneDelivered(orderId: String): Builder</TD></TR>
+<TR><TD ALIGN="LEFT" >- threeItemsTwoShipmentsOneShippedDpsOfsDisagreeOneDelivered(orderId: String): Builder</TD></TR>
+<TR><TD ALIGN="LEFT" >- twoItemsOneShipmentsNotShippedDpsOfsPromisesDisagree(orderId: String): Builder</TD></TR>
+<TR><TD ALIGN="LEFT" >- twoItemsTwoShipmentsOneNotShippedOneDelivered(orderId: String): Builder</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+OrderItem430949389[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)OrderItem</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   asin: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   confidence: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   customerOrderItemId: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   isConfidenceTracked: boolean [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   merchantId: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   orderId: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   quantity: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   title: String [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ builder(): Builder</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+OrderItemData955430128[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)OrderItemData</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   approvalDate: ZonedDateTime [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   asin: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   confidence: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   customerOrderItemId: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   isConfidenceTracked: boolean [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   merchantId: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   orderId: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   quantity: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   supplyCode: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   supplyCodeDate: ZonedDateTime [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   title: String [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ builder(): Builder</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+OrderItemDataGenerator955430128[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)OrderItemDataGenerator</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   asinTitles: List&lt;String&gt; [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   currentAsinIndex: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   currentItemApprovalDate: ZonedDateTime [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   currentItemSupplyCodeDate: ZonedDateTime [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   currentMerchantId: long [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   currentOrderItemId: long [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   titlesByAsin: Map&lt;String, String&gt; [0..*]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" ># buildOrderItemData(): Builder</TD></TR>
+<TR><TD ALIGN="LEFT" >- createConfidence(asin: String): int</TD></TR>
+<TR><TD ALIGN="LEFT" >- createCustomerOrderItemId(): String</TD></TR>
+<TR><TD ALIGN="LEFT" >- createIsConfidenceTracked(asin: String): boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >- createItemApprovalDate(): ZonedDateTime</TD></TR>
+<TR><TD ALIGN="LEFT" >- createItemAsin(): String</TD></TR>
+<TR><TD ALIGN="LEFT" >- createItemMerchantId(): String</TD></TR>
+<TR><TD ALIGN="LEFT" >- createItemQuantity(): int</TD></TR>
+<TR><TD ALIGN="LEFT" >- createItemSupplyCode(): String</TD></TR>
+<TR><TD ALIGN="LEFT" >- createItemSupplyCodeDate(): ZonedDateTime</TD></TR>
+<TR><TD ALIGN="LEFT" >- createItemTitleForAsin(asin: String): String</TD></TR>
+<TR><TD ALIGN="LEFT" >- incrementDate(dateTime: ZonedDateTime): ZonedDateTime</TD></TR>
+<TR><TD ALIGN="LEFT" >- populateAsinTitleMapping()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+OrderManipulationAuthority65467285[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)OrderManipulationAuthority</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   orderDatastore: OrderDatastore [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >- convertOrderDataToOrderResult(orderData: OrderData): OrderResult</TD></TR>
+<TR><TD ALIGN="LEFT" >- convertOrderItemDataToOrderResultItem(orderItemData: OrderItemData): OrderResultItem</TD></TR>
+<TR><TD ALIGN="LEFT" >- convertOrderShipmentDataToOrderResultShipment(orderShipmentData: OrderShipmentData): OrderShipment</TD></TR>
+<TR><TD ALIGN="LEFT" >- convertShipmentItemDataToShipmentItem(shipmentItemData: CustomerShipmentItemData): ShipmentItem</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getCustomerOrderByOrderId(orderId: String): OrderResult</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getCustomerOrderItemByOrderItemId(orderItemId: String): OrderResultItem</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+OrderManipulationAuthorityClient881471874[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)OrderManipulationAuthorityClient</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   omaService: OrderManipulationAuthority [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ getCustomerOrderByOrderId(orderId: String): OrderResult</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getCustomerOrderItemByOrderItemId(orderItemId: String): OrderResultItem</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+OrderShipmentDataGenerator955430128[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)OrderShipmentDataGenerator</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   currentShipmentCreationDate: ZonedDateTime [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   currentShipmentDeliveryDate: ZonedDateTime [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   currentShipmentId: long [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   currentShipmentShipDate: ZonedDateTime [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   currentWarehouseIndex: int [1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" ># buildShipmentData(): Builder</TD></TR>
+<TR><TD ALIGN="LEFT" >- createShipmentCondition(): String</TD></TR>
+<TR><TD ALIGN="LEFT" >- createShipmentCreationDate(): ZonedDateTime</TD></TR>
+<TR><TD ALIGN="LEFT" >- createShipmentDeliveryDate(): ZonedDateTime</TD></TR>
+<TR><TD ALIGN="LEFT" >- createShipmentId(): String</TD></TR>
+<TR><TD ALIGN="LEFT" ># createShipmentItemDataFromOrderItemData(orderItemData: OrderItemData): CustomerShipmentItemData</TD></TR>
+<TR><TD ALIGN="LEFT" >- createShipmentShipDate(): ZonedDateTime</TD></TR>
+<TR><TD ALIGN="LEFT" >- createShipmentShipOption(): String</TD></TR>
+<TR><TD ALIGN="LEFT" >- createShipmentZip(): String</TD></TR>
+<TR><TD ALIGN="LEFT" >- createWarehouseId(): String</TD></TR>
+<TR><TD ALIGN="LEFT" >- doDpsAndOfsPromisesAgree(): boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >- incrementDate(dateTime: ZonedDateTime): ZonedDateTime</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Promise430949389[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Promise</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   active: boolean [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   asin: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   confidence: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   customerOrderItemId: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   deliveryDate: ZonedDateTime [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   promiseEffectiveDate: ZonedDateTime [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   promiseLatestArrivalDate: ZonedDateTime [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   promiseLatestShipDate: ZonedDateTime [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   promiseProvidedBy: String [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ builder(): Builder</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+PromiseDao1554840972[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)PromiseDao</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   dpsClient: DeliveryPromiseServiceClient [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   omaClient: OrderManipulationAuthorityClient [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ get(customerOrderItemId: String): List&lt;Promise&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >- getDeliveryDateForOrderItem(customerOrderItemId: String): ZonedDateTime</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+PromiseHistoryClient1921659126[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)PromiseHistoryClient</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   getPromiseHistoryByOrderIdActivity: GetPromiseHistoryByOrderIdActivity [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ getPromiseHistoryByOrderId(orderId: String): PromiseHistory</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Shell1393771752[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Shell</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   inputHandler: ATAUserHandler [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   promiseHistoryClient: PromiseHistoryClient [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" ># handleUserRequest(): String</TD></TR>
+<TR><TD ALIGN="LEFT" >+ main(args: String[])</TD></TR>
+<TR><TD ALIGN="LEFT" >- processCommandLineArgs(args: String[])</TD></TR>
+<TR><TD ALIGN="LEFT" >- renderFixtures(): String</TD></TR>
+<TR><TD ALIGN="LEFT" >- renderOrderTable(order: Order): String</TD></TR>
+<TR><TD ALIGN="LEFT" >- renderPromiseHistoryTable(promiseHistory: PromiseHistory): String</TD></TR>
+<TR><TD ALIGN="LEFT" ># userHasAnotherRequest(): boolean</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+ShellTest1393771752[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)ShellTest</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   mockPromiseHistoryClient: PromiseHistoryClient [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   mockUserHandler: ATAUserHandler [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   shell: Shell [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" ># AFailedTest()</TD></TR>
+<TR><TD ALIGN="LEFT" ># ARequiredTest()</TD></TR>
+<TR><TD ALIGN="LEFT" ># AnotherRequiredTest()</TD></TR>
+<TR><TD ALIGN="LEFT" ># YetAnotherRequiredTest()</TD></TR>
+<TR><TD ALIGN="LEFT" >- assertOrderMatch(order: Order, result: String)</TD></TR>
+<TR><TD ALIGN="LEFT" >- assertPromiseMatch(promise: Promise, order: Order, result: String)</TD></TR>
+<TR><TD ALIGN="LEFT" >- assertRowMatch(fields: String[], result: String)</TD></TR>
+<TR><TD ALIGN="LEFT" >- createShell()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ handleUserRequest_orderDoesNotExist_doesntRaiseException()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ handleUserRequest_orderWithNullFields_doesntRaiseException()</TD></TR>
+<TR><TD ALIGN="LEFT" ># handleUserRequest_withExistingOrder_containsCorrectOrderData()</TD></TR>
+<TR><TD ALIGN="LEFT" ># handleUserRequest_withExistingOrder_containsCorrectPromiseHistoryData()</TD></TR>
+<TR><TD ALIGN="LEFT" ># handleUserRequest_withPromiseWithNullFields_RendersPromiseRow()</TD></TR>
+<TR><TD ALIGN="LEFT" ># main_withShowFixtures_showFixtureTable()</TD></TR>
+<TR><TD ALIGN="LEFT" ># userHasAnotherRequest_responseIsN_returnsFalse()</TD></TR>
+<TR><TD ALIGN="LEFT" ># userHasAnotherRequest_responseIsY_returnsTrue()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+}
+}
+
+'edges
+DeliveringOnOurPromiseIntegrationTests1393771752 -> Shell1393771752[label="shell
+[0..1]"];
+DeliveryPromiseService1504931410 -> OrderDatastore955430128[label="orderDatastore
+[0..1]"];
+DeliveryPromiseServiceClient79820300 -> DeliveryPromiseService1504931410[label="dpService
+[0..1]"];
+GetPromiseHistoryByOrderIdActivity1736465067 -> Order430949389[label="orderDao
+[0..1]"];
+GetPromiseHistoryByOrderIdActivity1736465067 -> OrderDao1554840972[arrowhead=none, arrowtail=empty, dir=both];
+GetPromiseHistoryByOrderIdActivity1736465067 -> Promise430949389[label="promiseDao
+[0..1]"];
+GetPromiseHistoryByOrderIdActivity1736465067 -> PromiseDao1554840972[arrowhead=none, arrowtail=empty, dir=both];
+MasteryTaskFourTests1416164072 -> PromiseHistoryClient1921659126[label="client
+[0..1]"];
+MasteryTaskOneTests1416164069 -> PromiseHistoryClient1921659126[label="client
+[0..1]"];
+Order430949389 -> OrderItem430949389[label="customerOrderItemList
+[0..*]"];
+OrderDao1554840972 -> OrderManipulationAuthorityClient881471874[label="omaClient
+[0..1]"];
+OrderDatastore955430128 -> OrderData955430128[label="orderDatasLookup
+[0..*]"];
+OrderDatastore955430128 -> OrderDataGenerator955430128[label="orderDataGenerator
+[0..1]"];
+OrderDatastore955430128 -> OrderFixture955430128[label="orderFixtures
+[0..*]"];
+OrderDatastore955430128 -> OrderFixtureGenerator955430128[label="orderFixtureGenerator
+[0..1]"];
+OrderDatastore955430128 -> OrderItemData955430128[label="orderFixtureItemData
+[0..*]"];
+OrderDatastore955430128 -> OrderItemData955430128[label="orderItemDatasByOrderItemId
+[0..*]"];
+OrderDatastore955430128 -> OrderItemDataGenerator955430128[label="orderItemDataGenerator
+[0..1]"];
+OrderDatastore955430128 -> OrderShipmentDataGenerator955430128[label="orderShipmentDataGenerator
+[0..1]"];
+OrderManipulationAuthority65467285 -> OrderDatastore955430128[label="orderDatastore
+[0..1]"];
+OrderManipulationAuthorityClient881471874 -> OrderManipulationAuthority65467285[label="omaService
+[0..1]"];
+PromiseDao1554840972 -> DeliveryPromiseServiceClient79820300[label="dpsClient
+[0..1]"];
+PromiseDao1554840972 -> OrderManipulationAuthorityClient881471874[label="omaClient
+[0..1]"];
+PromiseHistoryClient1921659126 -> GetPromiseHistoryByOrderIdActivity1736465067[label="getPromiseHistoryByOrderIdActivity
+[0..1]"];
+Shell1393771752 -> PromiseHistoryClient1921659126[label="promiseHistoryClient
+[0..1]"];
+ShellTest1393771752 -> PromiseHistoryClient1921659126[label="mockPromiseHistoryClient
+[0..1]"];
+ShellTest1393771752 -> Shell1393771752[label="shell
+[0..1]"];
+
+class App
+}
+
+
+@enduml
