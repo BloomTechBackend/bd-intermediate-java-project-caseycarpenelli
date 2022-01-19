@@ -39,3 +39,15 @@ Happy case, verifying that the OrderDao can return an order.
 
 ### Then
 * The result is not null
+
+### get_forUnknownOrderId_returnsOrder
+Test case that verifies that a null order is not returning an exception
+
+#### Given
+* An order ID that we know doesn't exist
+
+#### When
+1. We call `get()` with that order ID
+
+### Then
+* The result is null

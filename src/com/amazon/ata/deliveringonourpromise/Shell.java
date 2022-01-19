@@ -23,12 +23,12 @@ import java.util.List;
  */
 public class Shell {
     public static final String SHOW_FIXTURES_FLAG = "--show-fixtures";
-    private static final String CONTINUE_PROMPT = "Would you like to enter another orderId? (y/n)";
+    public static final String CONTINUE_PROMPT = "Would you like to enter another orderId? (y/n)";
     private static final Collection<String> VALID_YES_NO_ANSWERS =
             Collections.unmodifiableList(Arrays.asList("y", "n", "Y", "N"));
     private static final String ORDER_ID_PROMPT =
             "Please enter the orderId you would like to view the Promise History for.";
-    private static final String UNKNOWN_ORDER_MESSAGE =
+    public static final String UNKNOWN_ORDER_MESSAGE =
             "Unable to find any order data for orderId: %s. Please check your order id and try again.";
 
     private static final String INLINE_PROMPT = "> ";
@@ -36,8 +36,7 @@ public class Shell {
     private PromiseHistoryClient promiseHistoryClient;
     private ATAUserHandler inputHandler;
 
-    // FIXME: Added to cause a problem with Spotbug
-    private String unusedPrivateString;
+    // FIXME: Added to cause a problem with Spotbug.
 
     /**
      * Constructs a Shell instance that will use the given service client.
@@ -56,15 +55,12 @@ public class Shell {
      *
      * @param args command line args (ignored).
      * */
-    public static void main(String[] args)
-    {
+    public static void main(String[] args) {
         Shell shell = new Shell(App.getPromiseHistoryClient(), new ATAUserHandler());
         shell.processCommandLineArgs(args);
 
-        try
-        {
-            do
-            {
+        try {
+            do {
                 System.out.println(shell.handleUserRequest());
             } while (shell.userHasAnotherRequest());
         } catch (Exception e)

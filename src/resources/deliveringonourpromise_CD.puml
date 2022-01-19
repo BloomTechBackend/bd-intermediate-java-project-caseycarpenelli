@@ -1,0 +1,33 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class App
+class PromiseHistoryClient
+class GetPromiseHistoryByOrderIdActivity
+class OrderDao
+class PromiseDao
+class OrderManipulationAuthorityClient
+class DeliveryPromiseServiceClient
+class Order
+class OrderItem
+class Promise
+class PromiseHistory
+class ReadOnlyDao
+
+
+
+
+PromiseHistoryClient o-- GetPromiseHistoryByOrderIdActivity
+PromiseDao --o GetPromiseHistoryByOrderIdActivity
+PromiseDao o-- DeliveryPromiseServiceClient
+PromiseDao o-- OrderManipulationAuthorityClient
+OrderDao o-- OrderManipulationAuthorityClient
+OrderDao --o GetPromiseHistoryByOrderIdActivity
+PromiseHistory o-- Order
+PromiseHistory o-- Promise
+Order o-- OrderItem
+OrderDao ..|> ReadOnlyDao
+PromiseDao ..|> ReadOnlyDao
+
+
+@enduml
