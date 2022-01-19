@@ -40,7 +40,7 @@ The result is not null
     @Test
     public void get_forKnownNullOrderId_returnsOrder() {
         //GIVEN
-        String orderId = "900-3744402-0040003";
+        String orderId = "000-0000000-000000";
 
         //WHEN
         Order ordered = dao.get(orderId);
