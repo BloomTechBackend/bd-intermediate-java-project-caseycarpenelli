@@ -3,29 +3,31 @@
 
 class App
 class PromiseHistoryClient
-class GetPromiseHistoryByOrderIdActivty
+class GetPromiseHistoryByOrderIdActivity
+class OrderDao
+class PromiseDao
+class OrderManipulationAuthorityClient
+class DeliveryPromiseServiceClient
+class Order
+class OrderItem
+class Promise
+class PromiseHistory
+class ReadOnlyDao
 
-PromiseHistoryClient --|> GetPromiseHistoryByOrderIdActivty
-'abstract AbstractCollection
-'interface List
-'interface Collection
-'
-'List <|-- AbstractList
-'Collection <|-- AbstractCollection
-'
-'Collection <|- List
-'AbstractCollection <|- AbstractList
-'AbstractList <|-- ArrayList
-'
-'class ArrayList {
-'Object[] elementData
-'size()
-'}
-'
-'enum TimeUnit {
-'DAYS
-'HOURS
-'MINUTES
-'}
+
+
+
+PromiseHistoryClient o-- GetPromiseHistoryByOrderIdActivity
+PromiseDao --o GetPromiseHistoryByOrderIdActivity
+PromiseDao o-- DeliveryPromiseServiceClient
+PromiseDao o-- OrderManipulationAuthorityClient
+OrderDao o-- OrderManipulationAuthorityClient
+OrderDao --o GetPromiseHistoryByOrderIdActivity
+PromiseHistory o-- Order
+PromiseHistory o-- Promise
+Order o-- OrderItem
+OrderDao ..|> ReadOnlyDao
+PromiseDao ..|> ReadOnlyDao
+
 
 @enduml

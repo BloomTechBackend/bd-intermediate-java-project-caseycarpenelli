@@ -23,12 +23,12 @@ import java.util.List;
  */
 public class Shell {
     public static final String SHOW_FIXTURES_FLAG = "--show-fixtures";
-    private static final String CONTINUE_PROMPT = "Would you like to enter another orderId? (y/n)";
+    public static final String CONTINUE_PROMPT = "Would you like to enter another orderId? (y/n)";
     private static final Collection<String> VALID_YES_NO_ANSWERS =
             Collections.unmodifiableList(Arrays.asList("y", "n", "Y", "N"));
     private static final String ORDER_ID_PROMPT =
             "Please enter the orderId you would like to view the Promise History for.";
-    private static final String UNKNOWN_ORDER_MESSAGE =
+    public static final String UNKNOWN_ORDER_MESSAGE =
             "Unable to find any order data for orderId: %s. Please check your order id and try again.";
 
     private static final String INLINE_PROMPT = "> ";
@@ -36,7 +36,7 @@ public class Shell {
     private PromiseHistoryClient promiseHistoryClient;
     private ATAUserHandler inputHandler;
 
-    // FIXME: Added to cause a problem with Spotbug
+    // FIXME: Added to cause a problem with Spotbug.
 
     /**
      * Constructs a Shell instance that will use the given service client.
@@ -64,7 +64,6 @@ public class Shell {
                 System.out.println(shell.handleUserRequest());
             } while (shell.userHasAnotherRequest());
         } catch (Exception e)
-        //null pointer exception for mastery task 1.
         {
             System.out.println("Error encountered. Exiting.");
         }

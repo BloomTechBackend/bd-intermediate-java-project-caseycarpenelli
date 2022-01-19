@@ -8,6 +8,9 @@ import com.amazon.ata.deliveringonourpromise.types.PromiseHistory;
 
 import java.util.List;
 
+import static com.amazon.ata.deliveringonourpromise.Shell.CONTINUE_PROMPT;
+import static com.amazon.ata.deliveringonourpromise.Shell.UNKNOWN_ORDER_MESSAGE;
+
 /**
  * Activity class, handling the GetPromiseHistoryByOrderId API.
  */
@@ -15,11 +18,12 @@ public class GetPromiseHistoryByOrderIdActivity {
     private ReadOnlyDao<String, Order> orderDao;
     private ReadOnlyDao<String, List<Promise>> promiseDao;
 
+
     /**
      * Instantiates an activity for handling the API, accepting the relevant DAOs to
      * perform its work.
      *
-     * @param orderDao data access object fo retrieving Orders by order ID
+     * @param orderDao data access object for retrieving Orders by order ID
      * @param promiseDao data access object for retrieving Promises by order item ID
      */
     public GetPromiseHistoryByOrderIdActivity(ReadOnlyDao<String, Order> orderDao,
@@ -39,10 +43,18 @@ public class GetPromiseHistoryByOrderIdActivity {
             throw new IllegalArgumentException("order ID cannot be null");
         }
 
+
+
         Order order = orderDao.get(orderId);
-        //FIXME something wrong here.
+
+        if (order == null) {
+            return new PromiseHistory(order);
+        }
+
         List<OrderItem> customerOrderItems = order.getCustomerOrderItemList();
+
         OrderItem customerOrderItem = null;
+
         if (customerOrderItems != null && !customerOrderItems.isEmpty()) {
             customerOrderItem = customerOrderItems.get(0);
         }
