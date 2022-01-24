@@ -39,10 +39,9 @@ public class Order {
     private String shipOption;
     private ZonedDateTime orderDate;
 
-    private Order() { }
+    private Order() {}
 
     public Order(Order order) {
-
         this.customerOrderItemList = order.getCustomerOrderItemList();
     }
 
