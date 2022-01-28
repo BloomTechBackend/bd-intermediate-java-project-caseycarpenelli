@@ -8,12 +8,15 @@ import com.amazon.ata.ordermanipulationauthority.OrderResult;
 import com.amazon.ata.ordermanipulationauthority.OrderResultItem;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+
+import static java.util.Collections.unmodifiableList;
 
 /**
  * DAO implementation for orders.
  */
-public class OrderDao implements ReadOnlyDao<String, Order> {
+public class OrderDao implements ReadOnlyDao<String, Order>{
 
     private OrderManipulationAuthorityClient omaClient;
 
@@ -46,6 +49,9 @@ public class OrderDao implements ReadOnlyDao<String, Order> {
         }
 
         List<OrderItem> orderItems = new ArrayList<>();
+        orderItems.add(OrderItem.builder().build());
+//        Collections.sort(orderItems);
+
         for (OrderResultItem orderResultItem : omaOrder.getCustomerOrderItemList()) {
             orderItems.add(convertToOrderItem(orderResultItem));
         }
