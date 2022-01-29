@@ -49,7 +49,7 @@ public class OrderDao implements ReadOnlyDao<String, Order>{
         }
 
         List<OrderItem> orderItems = new ArrayList<>();
-        orderItems.add(OrderItem.builder().build());
+
 //        Collections.sort(orderItems);
 
         for (OrderResultItem orderResultItem : omaOrder.getCustomerOrderItemList()) {

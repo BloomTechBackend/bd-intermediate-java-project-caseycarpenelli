@@ -42,6 +42,7 @@ public class DeliveryPromiseServiceClient implements Clients {
                    .withPromiseLatestShipDate(deliveryPromise.getPromiseLatestShipDate())
                    .withPromiseEffectiveDate(deliveryPromise.getPromiseEffectiveDate())
                    .withIsActive(deliveryPromise.isActive())
+                   .withPromiseProvidedBy("DPS")
                    .withPromiseProvidedBy(deliveryPromise.getPromiseProvidedBy())
                    .withAsin(deliveryPromise.getAsin())
                    .build();
