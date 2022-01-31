@@ -1,5 +1,7 @@
 package com.amazon.ata.deliveringonourpromise.types;
 
+import com.amazon.ata.deliveringonourpromise.Client;
+
 import java.time.ZonedDateTime;
 
 /**
@@ -120,6 +122,8 @@ public class Promise {
                ", promiseProvidedBy='" + promiseProvidedBy + '\'' +
                '}';
     }
+
+
 
     /**
      * Builder for Promises. See Promise documentation.

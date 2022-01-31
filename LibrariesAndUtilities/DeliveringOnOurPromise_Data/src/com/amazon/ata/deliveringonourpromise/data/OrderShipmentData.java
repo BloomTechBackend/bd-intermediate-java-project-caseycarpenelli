@@ -8,7 +8,7 @@ import java.util.List;
  * Data object from shared data provider that represents a shipment of items to a customer. An OrderData
  * will have one to many OrderShipmentData objects.
  */
-public final class OrderShipmentData {
+public class OrderShipmentData {
     private String shipmentId;
     private String zip;
     private String condition;

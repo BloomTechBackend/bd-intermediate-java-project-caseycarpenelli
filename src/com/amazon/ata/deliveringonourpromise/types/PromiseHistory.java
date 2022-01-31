@@ -1,6 +1,9 @@
 package com.amazon.ata.deliveringonourpromise.types;
 
+import com.amazon.ata.deliveringonourpromise.comparators.PromiseAsinComparator;
+
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -27,7 +30,6 @@ public class PromiseHistory {
 
     /**
      * Adds a Promise to the promise history.
-     *
      * @param newPromise the next promise to add to the history's promises
      */
     public void addPromise(Promise newPromise) {
@@ -47,6 +49,9 @@ public class PromiseHistory {
      * @return the promises
      */
     public List<Promise> getPromises() {
-        return new ArrayList<>(promises);
+        PromiseAsinComparator promiseAsinComparator = new PromiseAsinComparator();
+        List<Promise> testList = new ArrayList<>(promises);
+        Collections.sort(testList, promiseAsinComparator);
+        return testList;
     }
 }

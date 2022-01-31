@@ -23,7 +23,7 @@ import java.util.regex.Pattern;
  * to each customer order item.
  * </p>
  */
-public final class OrderDatastore {
+public class OrderDatastore {
     private static final String ORDER_FORMAT = "\\d{3}-\\d{7}-\\d{7}";
 
     private static final OrderDatastore ORDER_DATASTORE_INSTANCE = new OrderDatastore();

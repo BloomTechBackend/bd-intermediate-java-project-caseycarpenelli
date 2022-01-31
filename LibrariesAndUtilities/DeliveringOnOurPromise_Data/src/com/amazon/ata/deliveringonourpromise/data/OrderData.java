@@ -9,7 +9,7 @@ import java.util.List;
  *
  * @see OrderDatastore
  */
-public final class OrderData {
+public class OrderData {
     private String orderId;
     private String customerId;
     private String marketplaceId;
