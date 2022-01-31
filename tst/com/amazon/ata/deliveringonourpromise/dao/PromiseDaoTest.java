@@ -1,7 +1,7 @@
 package com.amazon.ata.deliveringonourpromise.dao;
 
 import com.amazon.ata.deliveringonourpromise.App;
-import com.amazon.ata.deliveringonourpromise.Clients;
+import com.amazon.ata.deliveringonourpromise.Client;
 import com.amazon.ata.deliveringonourpromise.deliverypromiseservice.DeliveryPromiseServiceClient;
 import com.amazon.ata.deliveringonourpromise.orderfulfillmentservice.OrderFulfillmentService;
 import com.amazon.ata.deliveringonourpromise.orderfulfillmentservice.OrderFulfillmentServiceClient;
@@ -56,18 +56,18 @@ public class PromiseDaoTest {
                                  .getCustomerOrderItemList()
                                  .get(0)
                                  .getCustomerOrderItemId();
-        shippedDeliveryPromise = dpsClient.getClients(shippedOrderItemId);
+        shippedDeliveryPromise = dpsClient.getPromise(shippedOrderItemId);
         deliveredOrderItemId = omaClient
                                    .getCustomerOrderByOrderId(deliveredOrderId)
                                    .getCustomerOrderItemList()
                                    .get(0)
                                    .getCustomerOrderItemId();
-        deliveredDeliveryPromise = dpsClient.getClients(deliveredOrderItemId);
+        deliveredDeliveryPromise = dpsClient.getPromise(deliveredOrderItemId);
         deliveredDeliveryDate = omaClient
                                     .getCustomerOrderByOrderId(deliveredOrderId)
                                     .getOrderShipmentList().get(0)
                                     .getDeliveryDate();
-        List<Clients> clients = new ArrayList<Clients>();
+        List<Client> clients = new ArrayList<>();
         clients.add(dpsClient);
         clients.add(ofsClient);
         dao = new PromiseDao(clients, omaClient);

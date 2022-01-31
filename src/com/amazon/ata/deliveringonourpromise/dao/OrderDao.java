@@ -3,6 +3,7 @@ package com.amazon.ata.deliveringonourpromise.dao;
 import com.amazon.ata.deliveringonourpromise.ordermanipulationauthority.OrderManipulationAuthorityClient;
 import com.amazon.ata.deliveringonourpromise.types.Order;
 import com.amazon.ata.deliveringonourpromise.types.OrderItem;
+import com.amazon.ata.deliveringonourpromise.comparators.OrderItemComparator;
 import com.amazon.ata.order.OrderFieldValidator;
 import com.amazon.ata.ordermanipulationauthority.OrderResult;
 import com.amazon.ata.ordermanipulationauthority.OrderResultItem;
@@ -10,8 +11,6 @@ import com.amazon.ata.ordermanipulationauthority.OrderResultItem;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
-import static java.util.Collections.unmodifiableList;
 
 /**
  * DAO implementation for orders.
@@ -47,10 +46,11 @@ public class OrderDao implements ReadOnlyDao<String, Order>{
         if (! new OrderFieldValidator().isValidOrderId(orderId)) {
             return null;
         }
+        OrderItemComparator orderItemComparator = new OrderItemComparator();
 
         List<OrderItem> orderItems = new ArrayList<>();
 
-//        Collections.sort(orderItems);
+        Collections.sort(orderItems, orderItemComparator);
 
         for (OrderResultItem orderResultItem : omaOrder.getCustomerOrderItemList()) {
             orderItems.add(convertToOrderItem(orderResultItem));
@@ -80,5 +80,6 @@ public class OrderDao implements ReadOnlyDao<String, Order>{
                    .withConfidence(orderResultItem.getConfidence())
                    .build();
     }
+
 
 }

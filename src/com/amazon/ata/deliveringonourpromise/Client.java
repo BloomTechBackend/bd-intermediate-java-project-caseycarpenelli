@@ -1,11 +1,9 @@
 package com.amazon.ata.deliveringonourpromise;
 import com.amazon.ata.deliveringonourpromise.types.Promise;
 
-import java.util.ArrayList;
-import java.util.List;
 
-public interface Clients {
+public interface Client {
 
-    public Promise getClients(String customerOrderId);
+    public Promise getPromise(String customerOrderId);
 //    List addClients(Clients t);
 }

@@ -1,13 +1,13 @@
 package com.amazon.ata.deliveringonourpromise.orderfulfillmentservice;
 
-import com.amazon.ata.deliveringonourpromise.Clients;
+import com.amazon.ata.deliveringonourpromise.Client;
 import com.amazon.ata.deliveringonourpromise.data.OrderDatastore;
 import com.amazon.ata.deliverypromiseservice.service.DeliveryPromise;
 import com.amazon.ata.deliverypromiseservice.service.DeliveryPromiseService;
 import com.amazon.ata.deliveringonourpromise.types.Promise;
 
 
-public class OrderFulfillmentServiceClient implements Clients {
+public class OrderFulfillmentServiceClient implements Client {
     private OrderDatastore orderDatastore;
     private OrderFulfillmentService ofs;
 
@@ -19,7 +19,7 @@ public class OrderFulfillmentServiceClient implements Clients {
     }
 
 
-    public Promise getClients(String customerOrderItemId) {
+    public Promise getPromise(String customerOrderItemId) {
         OrderPromise orderPromise = ofs.getOrderPromise(customerOrderItemId);
         if (null == orderPromise) {
             return null;

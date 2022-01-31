@@ -45,7 +45,7 @@ public class App {
     }
 
     public static PromiseDao getPromiseDao() {
-        List<Clients> clients = new ArrayList<Clients>();
+        List<Client> clients = new ArrayList<Client>();
         clients.add(getOrderFulfillmentServiceClient());
         clients.add(getDeliveryPromiseServiceClient());
         return new PromiseDao(clients, getOrderManipulationAuthorityClient());

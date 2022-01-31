@@ -37,6 +37,8 @@ public class OrderItem {
     private boolean isConfidenceTracked;
     private int confidence;
 
+
+
     // for Builder's eyes only.
     private OrderItem() { }
 

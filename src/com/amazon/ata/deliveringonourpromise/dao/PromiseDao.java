@@ -1,6 +1,6 @@
 package com.amazon.ata.deliveringonourpromise.dao;
 
-import com.amazon.ata.deliveringonourpromise.Clients;
+import com.amazon.ata.deliveringonourpromise.Client;
 import com.amazon.ata.deliveringonourpromise.deliverypromiseservice.DeliveryPromiseServiceClient;
 import com.amazon.ata.deliveringonourpromise.orderfulfillmentservice.OrderFulfillmentServiceClient;
 import com.amazon.ata.deliveringonourpromise.ordermanipulationauthority.OrderManipulationAuthorityClient;
@@ -17,12 +17,12 @@ import java.util.List;
  * DAO implementation for Promises.
  */
 public class PromiseDao implements ReadOnlyDao<String, List<Promise>> {
-    private DeliveryPromiseServiceClient dpsClient;
+//    private DeliveryPromiseServiceClient dpsClient;
     private OrderManipulationAuthorityClient omaClient;
-    private OrderFulfillmentServiceClient ofsClient;
-    private List<Clients> clients;
+//    private OrderFulfillmentServiceClient ofsClient;
+    private List<Client> clients;
 
-    public PromiseDao(List<Clients> clients , OrderManipulationAuthorityClient omaClient) {
+    public PromiseDao(List<Client> clients , OrderManipulationAuthorityClient omaClient) {
         this.clients = clients;
         this.omaClient = omaClient;
     }
@@ -52,8 +52,8 @@ public class PromiseDao implements ReadOnlyDao<String, List<Promise>> {
         // fetch Promise from Delivery Promise Service. If exists, add to list of Promises to return.
         // Set delivery date
         Promise promise;
-        for (Clients client : clients) {
-            promise = client.getClients(customerOrderItemId);
+        for (Client client : clients) {
+            promise = client.getPromise(customerOrderItemId);
             if (promise != null) {
                 promise.setDeliveryDate(itemDeliveryDate);
                 promises.add(promise);

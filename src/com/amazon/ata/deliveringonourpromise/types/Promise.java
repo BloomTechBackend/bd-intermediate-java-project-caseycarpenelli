@@ -1,6 +1,6 @@
 package com.amazon.ata.deliveringonourpromise.types;
 
-import com.amazon.ata.deliveringonourpromise.Clients;
+import com.amazon.ata.deliveringonourpromise.Client;
 
 import java.time.ZonedDateTime;
 
