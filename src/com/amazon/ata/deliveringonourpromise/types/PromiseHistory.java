@@ -30,7 +30,6 @@ public class PromiseHistory {
 
     /**
      * Adds a Promise to the promise history.
-     *
      * @param newPromise the next promise to add to the history's promises
      */
     public void addPromise(Promise newPromise) {
