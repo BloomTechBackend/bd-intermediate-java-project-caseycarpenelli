@@ -1,0 +1,8 @@
+1. it will use all the clients at once to save time.
+2. the promise dao recieves a orderId and then request promise info and order information on it and returns it to the user.
+3. confused by the question.
+4. by adding the order fulfillment service client it takes a step out of the process.
+5. im not sure.
+6. by refactoring them in a way that supports further development.
+7. make it functional.
+8.
